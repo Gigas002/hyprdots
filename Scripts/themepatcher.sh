@@ -124,25 +124,25 @@ fc-cache -f
 
 
 # generate restore_cfg control
-cat << THEME > "${Fav_Theme}restore_cfg.lst"
-Y|Y|${HOME}/.config/hypr/themes|${Fav_Theme}.conf|hyprland
-Y|Y|${HOME}/.config/kitty/themes|${Fav_Theme}.conf|kitty
-Y|Y|${HOME}/.config/Kvantum|${Fav_Theme}|kvantum
-Y|Y|${HOME}/.config/qt5ct/colors|${Fav_Theme}.conf|qt5ct
-Y|Y|${HOME}/.config/qt6ct/colors|${Fav_Theme}.conf|qt6ct
-Y|Y|${HOME}/.config/rofi/themes|${Fav_Theme}.rasi|rofi
-Y|N|${HOME}/.config/swww|${Fav_Theme}|swww
-Y|Y|${HOME}/.config/waybar/themes|${Fav_Theme}.css|waybar
-THEME
+# cat << THEME > "${Fav_Theme}restore_cfg.lst"
+# Y|Y|${HOME}/.config/hypr/themes|${Fav_Theme}.conf|hyprland
+# Y|Y|${HOME}/.config/kitty/themes|${Fav_Theme}.conf|kitty
+# Y|Y|${HOME}/.config/Kvantum|${Fav_Theme}|kvantum
+# Y|Y|${HOME}/.config/qt5ct/colors|${Fav_Theme}.conf|qt5ct
+# Y|Y|${HOME}/.config/qt6ct/colors|${Fav_Theme}.conf|qt6ct
+# Y|Y|${HOME}/.config/rofi/themes|${Fav_Theme}.rasi|rofi
+# Y|N|${HOME}/.config/swww|${Fav_Theme}|swww
+# Y|Y|${HOME}/.config/waybar/themes|${Fav_Theme}.css|waybar
+# THEME
 
-if ! grep -q "|${Fav_Theme}|" "${ThemeCtl}" ; then 
-    echo "0|${Fav_Theme}|${3}|~/.config/swww/${Fav_Theme}/${WallSet}" >> "${ThemeCtl}"
-fi
+# if ! grep -q "|${Fav_Theme}|" "${ThemeCtl}" ; then 
+#     echo "0|${Fav_Theme}|${3}|~/.config/swww/${Fav_Theme}/${WallSet}" >> "${ThemeCtl}"
+# fi
 
 
 # restore configs with theme override
-echo -e "\033[0;32m[Restoring]\033[0m restore_cfg.sh \"${Fav_Theme}\" \"${Theme_Dir}/Configs\"\n"
-./restore_cfg.sh "$Fav_Theme" "$Theme_Dir/Configs"
+# echo -e "\033[0;32m[Restoring]\033[0m restore_cfg.sh \"${Fav_Theme}\" \"${Theme_Dir}/Configs\"\n"
+# ./restore_cfg.sh "$Fav_Theme" "$Theme_Dir/Configs"
 
-rm "${Fav_Theme}restore_cfg.lst"
+# rm "${Fav_Theme}restore_cfg.lst"
 

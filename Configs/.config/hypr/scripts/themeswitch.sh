@@ -121,8 +121,8 @@ ln -s /usr/share/themes/$ThemeSet/gtk-4.0 $ConfDir/gtk-4.0
 
 
 # flatpak GTK
-flatpak --user override --env=GTK_THEME="${ThemeSet}"
-flatpak --user override --env=ICON_THEME="${IconSet}"
+# flatpak --user override --env=GTK_THEME="${ThemeSet}"
+# flatpak --user override --env=ICON_THEME="${IconSet}"
 
 
 # hyprland

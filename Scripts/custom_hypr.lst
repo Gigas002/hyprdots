@@ -10,7 +10,7 @@ network-manager-applet
 bluez
 bluez-utils
 blueman
-sddm-git
+sddm
 qt5-wayland
 qt6-wayland
 qt5-quickcontrols
@@ -24,9 +24,7 @@ swww
 swaylock-effects-git
 wlogout
 grimblast-git
-hyprpicker-git
 slurp
-swappy
 cliphist
 polkit-kde-agent
 xdg-desktop-portal-hyprland
@@ -46,16 +44,10 @@ kvantum
 qt5ct
 qt6ct
 firefox
-kitty
 neofetch
 dolphin
-visual-studio-code-bin
-vim
 ark
-eza|zsh
 oh-my-zsh-git|zsh
 zsh-theme-powerlevel10k|zsh oh-my-zsh-git
-pokemon-colorscripts-git|zsh
-lsd|fish
-starship|fish
+lsd
 hyprdots-ctl
