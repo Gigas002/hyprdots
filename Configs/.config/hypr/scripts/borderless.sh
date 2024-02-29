@@ -1,20 +1,16 @@
 #!/bin/bash
 
-if [ "$BORDERLESS_ENABLED" = "false" ]; then
-    hyprctl reload
-else
-    output=$(hyprctl activeworkspace)
+output=$(hyprctl activeworkspace)
 
-    workspace_id=$(echo $output | grep -o -E '[0-9]+[^0-9]')
+workspace_id=$(echo $output | grep -o -E '[0-9]+[^0-9]')
 
-    IFS=''
-    read -ra ADDR <<<"$workspace_id"
+IFS=''
+read -ra ADDR <<<"$workspace_id"
 
-    for i in "${ADDR[@]}"; do
-        id=$i
-    done
+for i in "${ADDR[@]}"; do
+    id=$i
+done
 
-    echo $id
+echo $id
 
-    hyprctl keyword workspace $id,gapsin:0,gapsout:0,rounding:false,bordersize:0
-fi
+hyprctl keyword workspace $id,gapsin:0,gapsout:0,rounding:false,bordersize:0
