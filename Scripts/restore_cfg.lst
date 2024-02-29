@@ -1,0 +1,15 @@
+Y|N|${HOME}/.config|dunst|dunst
+Y|N|${HOME}/.config/hypr|animations.conf hyprland.conf theme.ctl windowrules.conf scripts themes wallbash|hyprland
+Y|N|${HOME}/.config/hypr|keybindings.conf monitors.conf userprefs.conf|hyprland
+Y|N|${HOME}/.config/hypr|nvidia.conf|hyprland nvidia-utils
+Y|N|${HOME}/.config|Kvantum|kvantum
+Y|N|${HOME}/.config|qt5ct|qt5ct
+Y|N|${HOME}/.config|qt6ct|qt6ct
+Y|N|${HOME}/.config|rofi|rofi
+Y|N|${HOME}/.config|swaylock|swaylock-effects
+Y|N|${HOME}/.config|swww|swww
+Y|N|${HOME}/.config|waybar|waybar
+Y|N|${HOME}/.config|wlogout|wlogout
+Y|N|${HOME}/.config|xsettingsd nwg-look gtk-3.0|nwg-look
+Y|N|${HOME}/.icons|default|nwg-look
+Y|N|${HOME}|.gtkrc-2.0|nwg-look
