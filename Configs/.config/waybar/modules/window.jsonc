@@ -6,8 +6,8 @@
             "${USER}@${set_sysname}:(.*)": "$1 ",
             "(.*) — Mozilla Firefox": "$1 󰈹",
             "(.*)Mozilla Firefox": "Firefox 󰈹",
-            "(.*) - Visual Studio Code": "$1 󰨞",
-            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*) - Visual Studio Codium": "$1 󰨞",
+            "(.*)Visual Studio Codium": "VSCodium 󰨞",
             "(.*) — Dolphin": "$1 󰉋",
             "(.*)Spotify": "Spotify 󰓇",
             "(.*)Steam": "Steam 󰓓"

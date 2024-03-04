@@ -208,7 +208,7 @@ fi
 source "$batterynotify_conf"
   case "$1" in
         --modify)
-    EDITOR="${EDITOR:-code}"  #* Use VS Code as the default editor
+    EDITOR="${EDITOR:-codium}"  #* Use VSCodium as the default editor
     echo -e "[Editor]: $EDITOR \n To change editor, run 'export EDITOR=prefered-editor'  \n[Modifying]: $batterynotify_conf \nPress Any Key if done editing"
     #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$batterynotify_conf" > /dev/null 2>&1 &
     kitty "$(which $EDITOR)" "$batterynotify_conf" > /dev/null 2>&1 &

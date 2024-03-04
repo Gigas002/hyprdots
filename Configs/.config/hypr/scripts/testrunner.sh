@@ -63,7 +63,7 @@ do
         $ScrDir/wbarconfgen.sh n &> /dev/null
 
         # quickapps
-        $ScrDir/quickapps.sh kitty firefox spotify code dolphin &> /dev/null &
+        $ScrDir/quickapps.sh kitty firefox spotify codium dolphin &> /dev/null &
         sleep 0.7
         pkill -x rofi
 

@@ -153,8 +153,8 @@ do
 
     if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
         codex=$(echo $ctlLine | awk -F '|' '{print $3}' | cut -d '~' -f 1)
-        if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
-            code --install-extension "${codex}" 2> /dev/null
+        if [ $(codium --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
+            codium --install-extension "${codex}" 2> /dev/null
         fi
     fi
 done
