@@ -151,12 +151,11 @@ do
     echo "Creating thumbnails for ${theme} [${#wpArray[@]}]"
     parallel --bar imagick_t2 ::: "${theme}" ::: "${wpArray[@]}"
 
+if pkg_installed codium ; then
     if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
         codex=$(echo $ctlLine | awk -F '|' '{print $3}' | cut -d '~' -f 1)
         if [ $(codium --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
             codium --install-extension "${codex}" 2> /dev/null
         fi
     fi
-done
-
- 
+fi
