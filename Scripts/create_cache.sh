@@ -1,16 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+------------------------------------+---/ /|#
 #|--/ /-| Script to generate wallpaper cache |--/ /-|#
 #|-/ /--| Kemipso                            |-/ /--|#
 #|/ /---+------------------------------------+/ /---|#
 
-source global_fn.sh
+export scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
 
-if ! pkg_installed imagemagick || ! pkg_installed parallel 
+if ! pkg_installed imagemagick || ! pkg_installed parallel
 then
     echo "ERROR : dependency failed, imagemagick/parallel is not installed..."
     exit 0
@@ -19,7 +20,7 @@ fi
 
 # set variables
 ctlLine=`grep '^1|' ${ThemeCtl}`
-export cacheDir="$HOME/.cache/hyprdots"
+export cacheDir
 
 
 # evaluate options
@@ -46,9 +47,10 @@ while getopts "fc:" option ; do
             exit 1
         fi ;;
     * ) # invalid option
-        echo "...valid options are..."   
+        echo "...valid options are..."
     	echo "./create_cache.sh -f                      # force create thumbnails (delete old cache)"
         echo "./create_cache.sh -c /path/to/wallpaper   # generate cache for custom walls"
+        echo "./create_cache.sh "Theme-Name"            # generate cache for a theme"
         exit 1 ;;
     esac
 done
@@ -59,29 +61,29 @@ ctlRead=$(awk -F '|' -v thm="${1}" '{if($2==thm) print$0}' "${ThemeCtl}")
 
 
 # magick function
-imagick_t2 () {
+fn_magick () {
     theme="$1"
     wpFullName="$2"
     wpBaseName=$(basename "${wpFullName}")
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}" ]; then
-        convert "${wpFullName}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}"
+        convert "${wpFullName}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}" &> /dev/null
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.rofi" ]; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.rofi"
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.rofi" &> /dev/null
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.blur" ]; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.blur"
+        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.blur" &> /dev/null
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
-        ./wallbash.sh "${wpFullName}" &> /dev/null
+        "${scrDir}/wallbash.sh" "${wpFullName}" &> /dev/null
     fi
 }
 
-export -f imagick_t2
+export -f fn_magick
 
 
 # create thumbnails for each theme > wallpapers
@@ -92,8 +94,8 @@ do
     wallPath=$(dirname "$fullPath")
     mkdir -p ${cacheDir}/${theme}
     mapfile -d '' wpArray < <(find "${wallPath}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
-    echo "Creating thumbnails for ${theme} [${#wpArray[@]}]"
-    parallel --bar imagick_t2 ::: "${theme}" ::: "${wpArray[@]}"
+    echo -e "\033[0;32m[cache]\033[0m creating thumbnails for ${theme} [${#wpArray[@]}]"
+    parallel --bar fn_magick ::: "${theme}" ::: "${wpArray[@]}"
 
 if pkg_installed codium ; then
     if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
